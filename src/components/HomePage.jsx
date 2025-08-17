@@ -49,28 +49,45 @@ function HomePage() {
   };
 
   return (
-    <div>
-      <h1>ImgsRooms</h1>
-      <p>Real-time collaborative image boards.</p>
-      <div>
-        <input
-          type="text"
-          placeholder="Enter your name"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        />
-      </div>
-      <div>
-        <button onClick={createRoom}>Create Room</button>
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Enter Room ID"
-          value={roomId}
-          onChange={(e) => setRoomId(e.target.value)}
-        />
-        <button onClick={joinRoom}>Join Room</button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-neutral-800 text-white p-4">
+      <div className="w-full max-w-md text-center">
+        <h1 className="text-5xl font-bold mb-2">ImgsRooms</h1>
+        <p className="text-lg text-neutral-400 mb-8">Real-time collaborative image boards.</p>
+        
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Enter your name"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            className="w-full px-4 py-2 bg-neutral-700 border border-neutral-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        
+        <div className="mb-6">
+          <button 
+            onClick={createRoom}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors"
+          >
+            Create Room
+          </button>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <input
+            type="text"
+            placeholder="Enter Room ID"
+            value={roomId}
+            onChange={(e) => setRoomId(e.target.value)}
+            className="flex-grow px-4 py-2 bg-neutral-700 border border-neutral-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button 
+            onClick={joinRoom}
+            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition-colors"
+          >
+            Join Room
+          </button>
+        </div>
       </div>
     </div>
   );

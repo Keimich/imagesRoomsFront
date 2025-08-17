@@ -1,134 +1,62 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  html {
+    @apply font-sans antialiased;
+  }
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@layer components {
+  .info-panel {
+    @apply absolute top-5 left-5 bg-neutral-900/80 backdrop-blur-sm border border-white/10 p-4 rounded-xl text-white z-50 max-h-[50vh] overflow-y-auto;
+  }
+
+  .info-panel h1 {
+    @apply text-xl font-bold m-0;
+  }
+
+  .info-panel h2 {
+    @apply text-lg font-semibold m-0;
+  }
+
+  .fab {
+    @apply fixed bottom-8 right-8 w-16 h-16 bg-blue-600 text-white text-4xl rounded-full shadow-lg z-50 flex items-center justify-center cursor-pointer transition-all duration-200 ease-in-out;
+  }
+
+  .fab:hover {
+    @apply bg-blue-500 scale-105;
+  }
+
+  .delete-button {
+    @apply absolute top-1 right-1 bg-black/50 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold border-none cursor-pointer transition-colors;
+  }
+
+  .delete-button:hover {
+    @apply bg-red-500;
+  }
+
+  .image-container {
+    @apply absolute resize-x overflow-hidden transition-shadow duration-200;
+  }
+
+  .image-container.resizing {
+    @apply shadow-2xl shadow-blue-500/50;
+  }
 }
 
 body {
-  margin: 0;
-  /* display: flex; */ /* Remove flex to allow full-page layout */
-  /* place-items: center; */
-  min-width: 320px;
-  min-height: 100vh;
+  @apply bg-neutral-800 text-neutral-100 m-0 min-w-[320px] min-h-screen;
 }
 
-h1 {
-  font-size: 1.5em; /* Adjusted for the info panel */
-  line-height: 1.2;
+/* Light mode styles */
+.light body {
+  @apply bg-white text-neutral-800;
 }
 
-h2 {
-  font-size: 1.2em;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.room-container {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-.top-left-info {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: rgba(26, 26, 26, 0.8);
-  padding: 10px 20px;
-  border-radius: 12px;
-  color: white;
-  z-index: 1000;
-  max-height: 50vh;
-  overflow-y: auto;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.top-left-info h1, .top-left-info h2 {
-  margin: 10px 0;
-}
-
-.top-left-info ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.fab {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  /* border-radius: 50%; */
-  background-color: #646cff;
-  color: white;
-  font-size: 32px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.25s, transform 0.2s;
-}
-
-.fab:hover {
-  background-color: #535bf2;
-  transform: scale(1.05);
-}
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-  .top-left-info {
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-  }
+.light .info-panel {
+  @apply bg-white/70 border-black/10;
 }

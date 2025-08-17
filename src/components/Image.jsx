@@ -39,7 +39,7 @@ function Image({ image, onMove, onDelete, onResizeStop }) {
     onMove(image.id, localPosition);
   }, [onMove, image.id, localPosition]);
 
-  const borderColor = isResizing ? 'blue' : 'transparent';
+  const containerClasses = `image-container ${isResizing ? 'resizing' : ''}`;
 
   return (
     <Draggable
@@ -51,26 +51,21 @@ function Image({ image, onMove, onDelete, onResizeStop }) {
     >
       <div
         ref={nodeRef}
+        className={containerClasses}
         style={{
-          position: 'absolute',
           width: image.width + 'px',
-          height: 'auto',
-          aspectRatio: `${image.width} / ${image.height}`,  
-          resize: 'horizontal',
-          overflow: 'hidden',
-          border: `2px solid ${borderColor}`,
-          transition: 'border-color 0.2s',
+          aspectRatio: `${image.width} / ${image.height}`,
         }}
       >
         <img
           draggable="false"
           src={image.url}
           alt=""
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          className="w-full h-full object-cover"
         />
         <button
           onClick={() => onDelete(image.id)}
-          style={{ position: 'absolute', top: '2px', right: '2px', zIndex: 10 }}
+          className="delete-button"
         >
           X
         </button>

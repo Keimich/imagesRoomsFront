@@ -3,6 +3,7 @@ import { useParams, useLocation, useNavigate } from 'react-router';
 import { v4 as uuidv4 } from 'uuid';
 import { socket } from '../socket';
 import Image from './Image';
+import UserList from './UserList';
 
 function RoomPage() {
   const navigate = useNavigate();
@@ -150,16 +151,12 @@ function RoomPage() {
   }, [handlePaste]);
 
   return (
-    <div className="room-container">
-      <div className="top-left-info">
+    <div className="w-screen h-screen relative overflow-hidden">
+      <div className="info-panel">
         <h1>Room: {roomId}</h1>
-        <h2>Users</h2>
-        <ul>
-          {users.map((user) => (
-            <li key={user.id}>{user.name}</li>
-          ))}
-        </ul>
       </div>
+
+      <UserList users={users} />
 
       {images.map((image) => (
         <Image
@@ -177,7 +174,7 @@ function RoomPage() {
         accept="image/*"
         ref={fileInputRef}
         onChange={handleFileChange}
-        style={{ display: 'none' }}
+        className="hidden"
       />
 
       {/* Floating Action Button */}

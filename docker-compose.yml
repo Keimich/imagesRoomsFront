@@ -1,0 +1,12 @@
+networks:
+  webnet:
+    external: true
+
+services:
+  frontend:
+    build: .
+    container_name: images.rooms.front
+    ports:
+      - "5173:80"
+    networks:
+      - webnet
