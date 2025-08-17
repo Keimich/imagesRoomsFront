@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { getPersistentUserId, generateRandomName } from '../utils/user';
+import API_URL from '../config';
 
 function HomePage() {
   const [userName, setUserName] = useState(() => generateRandomName());
@@ -30,7 +31,7 @@ function HomePage() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:3000/api/rooms', {
+      const response = await fetch(`${API_URL}/api/rooms`, {
         method: 'POST',
       });
       const data = await response.json();
