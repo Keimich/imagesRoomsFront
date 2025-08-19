@@ -70,13 +70,12 @@ function Image({ image, onMove, onDelete, onResizeStop }: ImageProps): React.Rea
   return (
     <Draggable
       nodeRef={imageRef}
-      enableUserSelectHack={true}
       position={{ x: image.x, y: image.y }}
       onDrag={handleDrag}
       onStop={handleStop}
       cancel='.cancel'
     >
-      <Card ref={imageRef} className='w-fit'>
+      <Card ref={imageRef} className='w-fit transition-all duration-50'>
         <CardHeader className="flex flex-row items-center justify-between gap-2">
           <CardTitle className="truncate">{image.name}</CardTitle>
           <CardAction>
